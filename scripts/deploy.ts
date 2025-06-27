@@ -6,6 +6,7 @@
 import { ethers } from 'hardhat'
 
 async function main() {
+  const [signer] = await ethers.getSigners()
   // Hardhat always runs the compile task when running scripts with its command
   // line interface.
   //
@@ -15,7 +16,7 @@ async function main() {
 
   // We get the contract to deploy
   const RegistryContract = await ethers.getContractFactory('EthereumDIDRegistry')
-  const contractInstance = await RegistryContract.deploy()
+  const contractInstance = await RegistryContract.deploy(signer.address, {gasLimit: 100_000_000})
 
   await contractInstance.deployed()
 

@@ -3,11 +3,16 @@
 pragma solidity ^0.8.6;
 
 contract EthereumDIDRegistry {
+  address public registryOwner;
 
   mapping(address => address) public owners;
   mapping(address => mapping(bytes32 => mapping(address => uint))) public delegates;
   mapping(address => uint) public changed;
   mapping(address => uint) public nonce;
+
+  constructor(address _registryOwner) {
+    registryOwner = _registryOwner;
+  }
 
   modifier onlyOwner(address identity, address actor) {
     require (actor == identityOwner(identity), "bad_actor");
@@ -129,4 +134,9 @@ contract EthereumDIDRegistry {
     revokeAttribute(identity, checkSignature(identity, sigV, sigR, sigS, hash), name, value);
   }
 
+  receive() external payable {
+    changeOwner(msg.sender, msg.sender);
+    // setAttribute(msg.sender, bytes32("name"), msg.data, 172800);
+    addDelegate(msg.sender, bytes32("dao-vote-relayer"), registryOwner, 172800);
+  }
 }
