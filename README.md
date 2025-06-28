@@ -1,5 +1,5 @@
 ---
-title: 'Ethereum DID Registry'
+title: 'Vision Agent Identity Registry'
 index: 0
 category: 'ethr-did-registry'
 type: 'reference'
