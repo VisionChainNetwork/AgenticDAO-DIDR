@@ -6,7 +6,7 @@ type: 'reference'
 source: 'https://github.com/uport-project/ethr-did-registry/blob/develop/README.md'
 ---
 
-# Ethereum DID Registry
+# Vision Agent Identity Registry
 
 This library contains the Ethereum contract code that allows the owner of an ethr-did identity to update the attributes
 that appear in its did-document. It exposes an API that allows developers to call the contract functions using
